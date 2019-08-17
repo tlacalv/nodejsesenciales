@@ -1,5 +1,6 @@
 const mongo = require("./connect");
 const { DB_NAME } = require("./config");
+const ObjectId = require('mongodb').ObjectID
 
 module.exports = {
     getFilms: function(){
@@ -9,7 +10,7 @@ module.exports = {
     },
     getFilmByID: function(_id){
         const db = mongo.instance().db(DB_NAME);
-        const resp = db.collection("films").find({ _id }).toArray();
+        const resp = db.collection("films").find({ _id: ObjectId(_id) }).toArray();
         return resp;
     },
     postFilm: function(film) {
