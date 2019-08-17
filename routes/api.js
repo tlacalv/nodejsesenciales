@@ -5,6 +5,7 @@ const { postFilm } = require("../db");
 
 module.exports = (app) => {
     app.get(`${API_PATH}/films`, (req, res)=>{
+        
         res.json(films);
     });
 
