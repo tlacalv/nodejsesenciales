@@ -8,7 +8,7 @@ let isDisconnecting = false;
 module.exports = {
     connect: () => {
         return new Promise((resolve, reject)=>{
-            MongoClient.connect(connString, { useNewUrlParser: true }, function(err, client) {
+            MongoClient.connect(connString, { useUnifiedTopology: true }, function(err, client) {
                 if (err) { reject(err); }
                 console.log("Conectado satisfactoriamente al servidor de Mongo!");
                 instance = client;
