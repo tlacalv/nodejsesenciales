@@ -10,7 +10,7 @@ module.exports = {
     },
     getFilmByID: function(_id){
         const db = mongo.instance().db(DB_NAME);
-        const resp = db.collection("films").find({ _id }).toArray();
+        const resp = db.collection("films").find({ _id: ObjectId(_id) }).toArray();
         return resp;
     },
     postFilm: function(film) {
@@ -22,5 +22,11 @@ module.exports = {
         const db = mongo.instance().db(DB_NAME)
         const resp = db.collection("films").deleteOne({_id: ObjectId(_id)})
         return resp
+    },
+    updateFilmById: function(id, film){
+        const db = mongo.instance().db(DB_NAME)
+        const resp = db.collection("films").replaceOne({'id':id},film)
+        return resp
+
     }
 }
